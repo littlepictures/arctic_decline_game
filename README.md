@@ -1,10 +1,10 @@
 # CLIP - Arctic Decline Game
 
 ## Background on this CLIP
-This repository contains a retro-styled javascript game called "Arctic Decline" that immerses the player in the struggle of arctic ice loss. The game is written in javascript and can best be played on a desktop computer.
+Arctic Decline is a little interactive game that gives an intuitive insight into the realities of the shrinking sea ice. The size of the paddles corresponds to the arctic sea ice area in the respective level / year. It is intentionally designed with a retro game character as the arctic sea ice dataset used for the game begins in the early 80s. The game was initially developed as a side project but was completely redesigned and reprogrammed for release in this project.
 
 ## Data Sources
-The game is fetching it's level data from a 'levels.json' file. NOTE: This file is still in beta and needs to be updated before public use.
+The game is written in javascript and fetching it's level data from a 'levels.json' file. NOTE: This file is still in beta and needs to be updated before public use.
 
 ## CREDITS & LICENSE
 - Idea by: [Ubilabs](https://www.ubilabs.com/)
