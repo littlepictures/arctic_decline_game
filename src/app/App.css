@@ -1,0 +1,80 @@
+.container {
+  background: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.shapes {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+  z-index: 1;
+}
+
+.content::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  top: 0;
+  width: 100vw;
+  background: url("/pattern.png");
+  height: 300%;
+  transform: translate(100%, -50%);
+  opacity: 0.1;
+}
+
+.content::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: 0;
+  width: 100vw;
+  background: url("/pattern.png");
+  height: 300%;
+  transform: translate(-100%, -50%);
+  opacity: 0.1;
+}
+
+.footer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer button {
+  color: var(--text-color-reduced);
+  font-size: 24px;
+  border: none;
+  background: none;
+  border-radius: 0;
+  font-family: "visitor2";
+  text-decoration: underline;
+  z-index: 2;
+}
+
+@media (min-width: 780px) {
+  .content {
+    border-left: 4px solid var(--text-color);
+    border-right: 4px solid var(--text-color);
+  }
+}

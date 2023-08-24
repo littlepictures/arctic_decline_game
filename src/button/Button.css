@@ -1,0 +1,40 @@
+.button {
+  font-family: "visitor2";
+  font-size: 24px;
+  background: var(--text-neutral);
+  padding: 8px 16px;
+  color: var(--background);
+  border: none;
+  border-top: 4px solid var(--text-color);
+  border-bottom: 4px solid var(--text-color);
+  position: relative;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: var(--text-color);
+  transform: translateX(-100%);
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: var(--text-color);
+  transform: translateX(100%);
+}
+
+@media (min-width: 780px) {
+  .button {
+    font-size: 40px;
+    line-height: normal;
+  }
+}
