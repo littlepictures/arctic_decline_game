@@ -1,0 +1,62 @@
+.canvas-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+canvas {
+  /* border: 1px solid #fff !important; */
+  position: relative;
+  z-index: 10;
+}
+
+.levels-wrapper {
+  transform: translate(-50%, -50%);
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.levels {
+  display: flex;
+  flex-wrap: nowrap;
+  transition: transform 350ms ease-in-out;
+}
+
+.level {
+  display: inline-block;
+  flex-grow: 1;
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 80px;
+  transform: scale(0.5);
+  transition: all 350ms ease-in-out;
+  color: var(--text-color-reduced);
+  pointer-events: none;
+}
+
+.level-active {
+  transform: scale(1);
+  color: var(--text-color);
+}
+
+.level-text {
+  text-align: center;
+  color: #fff;
+  color: var(--text-color);
+  font-size: 24px;
+  padding: 0 30px;
+  pointer-events: none;
+}
+
+@media (min-width: 780px) {
+  .level {
+    font-size: 160px;
+  }
+
+  .level-text {
+    font-size: 40px;
+  }
+}

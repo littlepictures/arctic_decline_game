@@ -1,0 +1,52 @@
+.intro {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 1;
+  height: 100%;
+  padding-top: 6vw;
+  padding-bottom: 50px;
+}
+
+.logo {
+  width: 75%;
+  margin-bottom: 22px;
+}
+
+.subtitle {
+  font-size: 24px;
+  color: var(--text-neutral);
+  margin-bottom: 22px;
+}
+
+.description {
+  font-size: 24px;
+
+  color: var(--text-color);
+  margin-bottom: 48px;
+  padding: 0 50px;
+}
+
+.instruction {
+  font-size: 24px;
+
+  color: var(--text-color);
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 30px;
+}
+
+@media (min-width: 780px) {
+  .description,
+  .instruction,
+  .subtitle {
+    font-size: 40px;
+  }
+
+  .instruction {
+    padding: 0 150px;
+  }
+}

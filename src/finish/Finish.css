@@ -1,0 +1,37 @@
+.finish {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  width: 340px;
+  font-size: 24px;
+  z-index: 1;
+}
+
+.kicker {
+  color: var(--text-color);
+}
+
+.year {
+  font-size: 120px;
+  color: var(--text-color);
+  line-height: 90px;
+  margin-bottom: 40px;
+}
+
+.subtitle {
+  color: var(--text-neutral);
+  margin-bottom: 40px;
+}
+
+@media (min-width: 780px) {
+  .year {
+    font-size: 200px;
+    line-height: normal;
+  }
+
+  .kicker,
+  .subtitle {
+    font-size: 40px;
+  }
+}
