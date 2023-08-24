@@ -1,26 +1,40 @@
 import {useCallback, useEffect, useRef, useState} from "react";
 import Konva from "konva";
 import {Stage, Layer, Image} from "react-konva";
-import {useKeyPressEvent} from "react-use";
+import {useKeyPressEvent, useInterval} from "react-use";
 import useImage from "use-image";
 
+import {createPaddle} from "../lib/create-paddle";
 import {useMyStore} from "../store";
 
-import paddleImage from "../images/paddle-bottom.png?url";
+// import paddleImage from "../images/paddle-bottom.png?url";
 import ballImage from "../images/ball.png";
 import levels from "../../levels.json";
 
 import "./Pong.css";
 
+const normalizePaddleLength = (icemassdata: number) => {
+  const minPaddleLength = 15;
+  const maxPaddleLength = 110;
+  const normalizedLength =
+    minPaddleLength +
+    ((icemassdata - 3) / (8 - 3)) * (maxPaddleLength - minPaddleLength);
+  return normalizedLength;
+};
+
 function Pong() {
-  const {setUi} = useMyStore((state) => state);
+  const {autoplay, setUi} = useMyStore((state) => state);
+  useState;
 
   const [touchX, setTouchX] = useState<number | null>(null);
+  const [paddleWidth, setPaddleWidth] = useState<number>(110);
+  const [paImage, setPaImage] = useState<HTMLImageElement>(
+    createPaddle(paddleWidth)
+  );
 
   const [gameInProgress, setGameInProgress] = useState(true);
   const [level, setLevel] = useState(1);
 
-  const [pImage] = useImage(paddleImage);
   const [bImage] = useImage(ballImage);
 
   const playerDirectionRef = useRef(0);
@@ -68,7 +82,9 @@ function Pong() {
   useKeyPressEvent(
     "ArrowLeft",
     () => {
-      playerDirectionRef.current = -1;
+      if (!autoplay) {
+        playerDirectionRef.current = -1;
+      }
     },
     () => {
       playerDirectionRef.current = 0;
@@ -77,12 +93,18 @@ function Pong() {
   useKeyPressEvent(
     "ArrowRight",
     () => {
-      playerDirectionRef.current = 1;
+      if (!autoplay) {
+        playerDirectionRef.current = 1;
+      }
     },
     () => {
       playerDirectionRef.current = 0;
     }
   );
+
+  useInterval(() => {
+    setLevel(level + 1);
+  }, 5000);
 
   const handleTouchStart = useCallback((event: TouchEvent) => {
     setTouchX(event.touches[0].clientX);
@@ -91,6 +113,27 @@ function Pong() {
   const handleTouchEnd = useCallback(() => {
     setTouchX(null);
   }, []);
+
+  useEffect(() => {
+    if (!levelData) {
+      return;
+    }
+    const userPaddle = userPaddleRef.current;
+    const aiPaddle = aiPaddleRef.current;
+
+    const player = pRef.current;
+    const ai = aRef.current;
+
+    const newPaddleWidth = normalizePaddleLength(levelData!.iceMassData);
+    player.width = newPaddleWidth;
+    ai.width = newPaddleWidth;
+
+    setPaddleWidth(newPaddleWidth);
+    setPaImage(createPaddle(newPaddleWidth));
+
+    userPaddle?.x(player.x);
+    aiPaddle?.x(ai.x);
+  }, [levelData]);
 
   useEffect(() => {
     if (touchX === null) {
@@ -106,13 +149,17 @@ function Pong() {
   }, [touchX]);
 
   useEffect(() => {
+    if (autoplay) {
+      return;
+    }
+
     window.addEventListener("touchstart", handleTouchStart);
     window.addEventListener("touchend", handleTouchEnd);
     return () => {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [handleTouchStart, handleTouchEnd]);
+  }, [handleTouchStart, handleTouchEnd, autoplay]);
 
   useEffect(() => {
     if (!levelData) {
@@ -120,14 +167,14 @@ function Pong() {
       setGameInProgress(false);
     }
 
-    userPaddleRef.current?.to({
-      width: pRef.current.width,
-      duration: 0.25,
-    });
-    aiPaddleRef.current?.to({
-      width: aRef.current.width,
-      duration: 0.25,
-    });
+    // userPaddleRef.current?.to({
+    //   width: pRef.current.width,
+    //   duration: 0.25,
+    // });
+    // aiPaddleRef.current?.to({
+    //   width: aRef.current.width,
+    //   duration: 0.25,
+    // });
   }, [levelData, setUi]);
 
   useEffect(() => {
@@ -146,15 +193,6 @@ function Pong() {
       return collided;
     };
 
-    const normalizePaddleLength = (icemassdata: number) => {
-      const minPaddleLength = 15;
-      const maxPaddleLength = 110;
-      const normalizedLength =
-        minPaddleLength +
-        ((icemassdata - 3) / (8 - 3)) * (maxPaddleLength - minPaddleLength);
-      return normalizedLength;
-    };
-
     const userPaddle = userPaddleRef.current;
     const aiPaddle = aiPaddleRef.current;
     const ballCircle = ballRef.current;
@@ -169,9 +207,6 @@ function Pong() {
       ball.velocityX = (Math.random() - 0.5) * 10;
       ball.velocityY = -ball.velocityY;
       ball.speed = 3;
-
-      player.width = normalizePaddleLength(levelData!.iceMassData);
-      ai.width = normalizePaddleLength(levelData!.iceMassData);
 
       setLevel((level) => level + 1);
     };
@@ -211,6 +246,10 @@ function Pong() {
       // AI paddle movement
       ai.x += (ball.x + 12 - (ai.x + ai.width / 2)) * 0.1;
 
+      if (autoplay) {
+        player.x += (ball.x + 12 - (ai.x + ai.width / 2)) * 0.1;
+      }
+
       // Check for player paddle collisions with canvas borders
       if (player.x < 0) {
         player.x = 0;
@@ -241,28 +280,27 @@ function Pong() {
     game.start();
 
     return () => game.stop();
-  }, [gameInProgress, height, levelData, width]);
+  }, [autoplay, gameInProgress, height, levelData, width]);
 
   return (
     <div className="canvas-wrapper">
       <Stage width={width} height={height}>
         <Layer>
           <Image
-            image={pImage}
+            image={paImage}
             x={width / 2 - initialPaddleWidth / 2}
             y={0}
-            width={initialPaddleWidth}
+            width={paddleWidth}
             height={paddleHeight}
             ref={aiPaddleRef}
           ></Image>
 
           <Image
-            image={pImage}
+            image={paImage}
             x={width / 2 - initialPaddleWidth / 2}
             y={height - paddleHeight}
-            width={initialPaddleWidth}
+            width={paddleWidth}
             height={paddleHeight}
-            fillPatternScaleX={0}
             ref={userPaddleRef}
           ></Image>
 
@@ -272,7 +310,6 @@ function Pong() {
             height={ballSize}
             x={width / 2 - ballSize / 2}
             y={height / 2 - ballSize / 2}
-            shadowEnabled={false}
             ref={ballRef}
           ></Image>
         </Layer>
@@ -282,7 +319,8 @@ function Pong() {
           className="levels"
           style={{
             transform: `translateX(${
-              (1 / 3) * 100 + (levelData!.level - 1) * ((1 / 3) * 100 * -1)
+              (1 / 3) * 100 +
+              ((levelData?.level ?? 1) - 1) * ((1 / 3) * 100 * -1)
             }%)`,
           }}
         >

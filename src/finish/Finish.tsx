@@ -10,7 +10,7 @@ function Finish() {
   return (
     <div className="finish">
       <div className="kicker">you made it to</div>
-      <div className="year">{levels.at(-1).year}</div>
+      <div className="year">{levels!.at(-1)!.year}</div>
       <p className="subtitle">
         Congrats: life is only getting harder from here
       </p>

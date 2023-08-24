@@ -1,3 +1,5 @@
 <svg width="160" height="24" viewBox="0 0 160 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path id="paddle-bottom" d="M6 20L6 18L4 18L2 18L2 6L4 6L6 6L6 4L6 2L154 2L154 4L154 6L156 6L158 6L158 18L156 18L154 18L154 20L154 22L78.5 22L6 22L6 20Z" fill="#C4D6EA" stroke="#4D96BD" stroke-width="4"/>
+    <path id="paddle-bottom"
+        d="M6 20L6 18L4 18L2 18L2 6L4 6L6 6L6 4L6 2L154 2L154 4L154 6L156 6L158 6L158 18L156 18L154 18L154 20L154 22L6 22L6 20Z"
+        fill="#C4D6EA" stroke="#4D96BD" stroke-width="4" />
 </svg>
