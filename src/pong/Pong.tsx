@@ -8,7 +8,7 @@ import {useMyStore} from "../store";
 
 import paddleImage from "../images/paddle-bottom.png?url";
 import ballImage from "../images/ball.png";
-import levels from "./levels.json";
+import levels from "../../levels.json";
 
 import "./Pong.css";
 

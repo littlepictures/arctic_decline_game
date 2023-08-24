@@ -2,7 +2,7 @@ import "./Finish.css";
 
 import {useMyStore} from "../store";
 import Button from "../button/Button";
-import levels from "../pong/levels.json";
+import levels from "../../levels.json";
 
 function Finish() {
   const {setUi} = useMyStore((state) => state);
