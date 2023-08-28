@@ -33,7 +33,7 @@
   right: -4px;
   top: 0;
   width: 100vw;
-  background: url("/pattern2.png"), no-repeat url("/ice-right.svg") top left,
+  background: url("/pattern.png"), no-repeat url("/ice-right.svg") top left,
     var(--background);
   height: 100%;
   transform: translate(100%, 0);
@@ -45,7 +45,7 @@
   left: -4px;
   top: 0;
   width: 100vw;
-  background: url("/pattern2.png"), no-repeat url("/ice-left.svg") top right,
+  background: url("/pattern.png"), no-repeat url("/ice-left.svg") top right,
     var(--background);
   height: 100%;
   transform: translate(-100%, 0);

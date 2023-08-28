@@ -4,13 +4,12 @@
 }
 
 canvas {
-  /* border: 1px solid #fff !important; */
   position: relative;
   z-index: 10;
 }
 
 .levels-wrapper {
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -57px);
   width: 100%;
   position: absolute;
   top: 50%;
@@ -47,11 +46,16 @@ canvas {
   color: #fff;
   color: var(--text-color);
   font-size: 24px;
-  padding: 0 30px;
   pointer-events: none;
+  width: 65%;
+  margin: 0 auto;
 }
 
 @media (min-width: 780px) {
+  .levels-wrapper {
+    transform: translate(-50%, -100px);
+  }
+
   .level {
     font-size: 160px;
   }

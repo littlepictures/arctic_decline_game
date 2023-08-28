@@ -86,7 +86,7 @@ function App() {
         </div>
       </div>
       <div className="shapes">
-        {Array(10)
+        {Array(15)
           .fill("a")
           .map((_, index) => {
             return (

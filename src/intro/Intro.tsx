@@ -12,17 +12,20 @@ function Intro() {
 
   return (
     <div className="intro">
-      <img className="logo" src={logo} alt="" />
-      <p className="subtitle">This Game is based on real data:</p>
-      <p className="description">
-        the length of the ice sheets matches the arctic ice mass
-      </p>
-      <Button
-        text="start game"
-        onClick={() => {
-          setUi("game");
-        }}
-      />
+      <div></div>
+      <div className="top-wrapper">
+        <img className="logo" src={logo} alt="" />
+        <p className="subtitle">This Game is based on real data:</p>
+        <p className="description">
+          the length of the ice sheets matches the arctic ice mass
+        </p>
+        <Button
+          text="start game"
+          onClick={() => {
+            setUi("game");
+          }}
+        />
+      </div>
       <div className="instruction">
         <MobileView>
           Touch on the left or right side of your screen to move your ice sheet

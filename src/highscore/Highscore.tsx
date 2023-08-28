@@ -44,7 +44,7 @@ function Highscore() {
             <div key={entry.name} className="row">
               <div className="rank">{String(index + 1).padStart(2, "0")}</div>
               <div className="name">{entry.name}</div>
-              <div className="score">{entry.score}</div>
+              <div className="score">{Math.round(entry.score)}</div>
             </div>
           );
         })}

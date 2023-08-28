@@ -3,6 +3,7 @@ import Konva from "konva";
 import {Stage, Layer, Image} from "react-konva";
 import {useKeyPressEvent, useInterval} from "react-use";
 import useImage from "use-image";
+import {isMobile} from "react-device-detect";
 
 import {createPaddle} from "../lib/create-paddle";
 import {useMyStore} from "../store";
@@ -12,6 +13,30 @@ import ballImage from "../images/ball.png";
 import levels from "../../levels.json";
 
 import "./Pong.css";
+
+const startColor = "#B4BD4D";
+const endColor = "#BD4D4D";
+
+function interpolateColor(color1: string, color2: string, factor: number) {
+  const r1 = parseInt(color1.substring(1, 3), 16);
+  const g1 = parseInt(color1.substring(3, 5), 16);
+  const b1 = parseInt(color1.substring(5, 7), 16);
+
+  const r2 = parseInt(color2.substring(1, 3), 16);
+  const g2 = parseInt(color2.substring(3, 5), 16);
+  const b2 = parseInt(color2.substring(5, 7), 16);
+
+  const r = Math.round(r1 + factor * (r2 - r1));
+  const g = Math.round(g1 + factor * (g2 - g1));
+  const b = Math.round(b1 + factor * (b2 - b1));
+
+  return (
+    "#" +
+    r.toString(16).padStart(2, "0") +
+    g.toString(16).padStart(2, "0") +
+    b.toString(16).padStart(2, "0")
+  );
+}
 
 const normalizePaddleLength = (icemassdata: number) => {
   const minPaddleLength = 15;
@@ -24,7 +49,6 @@ const normalizePaddleLength = (icemassdata: number) => {
 
 function Pong() {
   const {autoplay, setUi} = useMyStore((state) => state);
-  useState;
 
   const [touchX, setTouchX] = useState<number | null>(null);
   const [paddleWidth, setPaddleWidth] = useState<number>(110);
@@ -78,6 +102,12 @@ function Pong() {
   });
 
   const levelData = levels.find((l) => l.level === level);
+
+  const factor = Math.min(
+    (levelData?.level ?? 1 - 1) / levels.at(-1)!.level,
+    1
+  );
+  const levelColor = interpolateColor(startColor, endColor, factor);
 
   useKeyPressEvent(
     "ArrowLeft",
@@ -165,6 +195,10 @@ function Pong() {
     if (!levelData) {
       setUi("finish");
       setGameInProgress(false);
+
+      if (autoplay) {
+        window.location.reload();
+      }
     }
 
     // userPaddleRef.current?.to({
@@ -175,7 +209,7 @@ function Pong() {
     //   width: aRef.current.width,
     //   duration: 0.25,
     // });
-  }, [levelData, setUi]);
+  }, [autoplay, levelData, setUi]);
 
   useEffect(() => {
     if (!gameInProgress) {
@@ -241,7 +275,11 @@ function Pong() {
         resetBall();
       }
 
-      player.x += playerDirection * 5;
+      if (isMobile) {
+        player.x += playerDirection * 5;
+      } else {
+        player.x += playerDirection * 10;
+      }
 
       // AI paddle movement
       ai.x += (ball.x + 12 - (ai.x + ai.width / 2)) * 0.1;
@@ -338,7 +376,9 @@ function Pong() {
             );
           })}
         </div>
-        <div className="level-text">{levelData?.text ?? ""}</div>
+        <div className="level-text" style={{color: levelColor}}>
+          {levelData?.text ?? ""}
+        </div>
       </div>
     </div>
   );

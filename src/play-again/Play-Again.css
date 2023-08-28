@@ -27,11 +27,11 @@
 
 @media (min-width: 780px) {
   .play-again {
-    font-size: 40px;
+    font-size: 26px;
   }
 
   .play-again .title {
-    font-size: 160px;
+    font-size: 134px;
     line-height: normal;
   }
 }

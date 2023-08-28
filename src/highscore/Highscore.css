@@ -54,11 +54,11 @@
 
 @media (min-width: 780px) {
   .highscore h1 {
-    font-size: 160px;
+    font-size: 136px;
   }
 
   .highscore .subtitle {
-    font-size: 80px;
+    font-size: 68px;
   }
 
   .highscore .table {
