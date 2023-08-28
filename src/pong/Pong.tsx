@@ -38,12 +38,12 @@ function interpolateColor(color1: string, color2: string, factor: number) {
   );
 }
 
-const normalizePaddleLength = (icemassdata: number) => {
+const normalizePaddleLength = (iceExtentData: number) => {
   const minPaddleLength = 15;
   const maxPaddleLength = 110;
   const normalizedLength =
     minPaddleLength +
-    ((icemassdata - 3) / (8 - 3)) * (maxPaddleLength - minPaddleLength);
+    ((iceExtentData - 3) / (8 - 3)) * (maxPaddleLength - minPaddleLength);
   return normalizedLength;
 };
 
@@ -154,7 +154,7 @@ function Pong() {
     const player = pRef.current;
     const ai = aRef.current;
 
-    const newPaddleWidth = normalizePaddleLength(levelData!.iceMassData);
+    const newPaddleWidth = normalizePaddleLength(levelData!.iceExtentData);
     player.width = newPaddleWidth;
     ai.width = newPaddleWidth;
 
