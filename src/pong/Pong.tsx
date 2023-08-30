@@ -14,6 +14,25 @@ import levels from "../../levels.json";
 
 import "./Pong.css";
 
+interface Ball {
+  velocityX: number;
+  velocityY: number;
+  radius: number;
+  speed: number;
+  x: number;
+  y: number;
+}
+
+interface Paddle {
+  x: number;
+  y: number;
+  width: number;
+  initialWidth: number;
+  height: number;
+  color: string;
+  score?: number;
+}
+
 const startColor = "#B4BD4D";
 const endColor = "#BD4D4D";
 
@@ -200,15 +219,6 @@ function Pong() {
         window.location.reload();
       }
     }
-
-    // userPaddleRef.current?.to({
-    //   width: pRef.current.width,
-    //   duration: 0.25,
-    // });
-    // aiPaddleRef.current?.to({
-    //   width: aRef.current.width,
-    //   duration: 0.25,
-    // });
   }, [autoplay, levelData, setUi]);
 
   useEffect(() => {
@@ -217,7 +227,7 @@ function Pong() {
     }
 
     // Check if ball collides with a paddle
-    const collision = (b, p) => {
+    const collision = (b: Ball, p: Paddle) => {
       const collided =
         b.x + 12 + b.radius > p.x &&
         b.x + 12 - b.radius < p.x + p.width &&
