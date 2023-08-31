@@ -61,7 +61,7 @@
   justify-content: space-between;
 }
 
-.footer button {
+.footer a {
   color: var(--text-color-reduced);
   font-size: 24px;
   border: none;

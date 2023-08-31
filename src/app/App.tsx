@@ -2,7 +2,6 @@ import Pong from "../pong/Pong";
 import Intro from "../intro/Intro";
 import Finish from "../finish/Finish";
 import PlayAgain from "../play-again/Play-Again";
-import Highscore from "../highscore/Highscore";
 
 import {useMyStore} from "../store";
 
@@ -19,6 +18,8 @@ const ices = [ice01, ice02, ice03, ice04];
 function App() {
   const {ui, contentWidth} = useMyStore((state) => state);
 
+  // THIS IS FOR generating CSS for the moving ice pieces in the background
+  //
   // const things = [];
   // for (let index = 0; index < 30; index++) {
   //   const rotation =
@@ -65,24 +66,21 @@ function App() {
         {ui === "game" && <Pong />}
         {ui === "finish" && <Finish />}
         {ui === "play-again" && <PlayAgain />}
-        {ui === "highscore" && <Highscore />}
         <div className="footer">
-          <button
-            onClick={() => {
-              console.log("imprint");
-            }}
+          <a
+            href="https://www.brockmann-consult.de/imprint/"
+            target="_blank"
             className="imprint"
           >
             Imprint
-          </button>
-          <button
-            onClick={() => {
-              console.log("share");
-            }}
+          </a>
+          <a
+            href="https://github.com/littlepictures/arctic_decline_game"
             className="share"
+            target="_blank"
           >
-            Share
-          </button>
+            Data/Repo
+          </a>
         </div>
       </div>
       <div className="shapes">

@@ -1,12 +1,12 @@
 import {create} from "zustand";
 import {immer} from "zustand/middleware/immer";
 
-type Ui = "intro" | "game" | "finish" | "play-again" | "highscore";
+type Ui = "intro" | "game" | "finish" | "play-again";
 
 interface State {
   autoplay: boolean;
   contentWidth: number;
-  ui: "intro" | "game" | "finish" | "play-again" | "highscore";
+  ui: "intro" | "game" | "finish" | "play-again";
   setUi: (ui: Ui) => void;
 }
 

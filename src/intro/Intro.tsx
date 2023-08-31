@@ -15,9 +15,9 @@ function Intro() {
       <div></div>
       <div className="top-wrapper">
         <img className="logo" src={logo} alt="" />
-        <p className="subtitle">This Game is based on real data:</p>
+        <p className="subtitle">This game is based on real satellite data:</p>
         <p className="description">
-          the length of the ice sheets matches the arctic ice mass
+          the length of your paddle reflects changes in sea ice extent
         </p>
         <Button
           text="start game"

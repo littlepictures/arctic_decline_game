@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "deploy": "npm run build && gsutil -m -h Cache-Control:\"no-cache\" cp -r dist/* gs://arctic-decline"
+    "deploy": "echo 'automatic via github actions' to github pages"
   },
   "dependencies": {
     "immer": "^10.0.2",
