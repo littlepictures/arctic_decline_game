@@ -251,8 +251,6 @@ function Pong() {
       ball.velocityX = (Math.random() - 0.5) * 10;
       ball.velocityY = -ball.velocityY;
       ball.speed = 3;
-
-      setLevel((level) => level + 1);
     };
 
     const game = new Konva.Animation(() => {
