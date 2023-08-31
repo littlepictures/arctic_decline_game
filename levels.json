@@ -61,13 +61,13 @@
   },
   {
     "level": 11,
-    "text": "ice, loss, baby!",
+    "text": "well, we did not change",
     "iceExtentData": 6.6,
     "year": 1990
   },
   {
     "level": 12,
-    "text": "let's talk this out. summit anyone?",
+    "text": "but the ice did",
     "iceExtentData": 6.9,
     "year": 1991
   },
@@ -103,7 +103,7 @@
   },
   {
     "level": 18,
-    "text": "Kyoto '97, too little too late?",
+    "text": "Kyoto '97",
     "iceExtentData": 7.0,
     "year": 1997
   },
@@ -127,13 +127,13 @@
   },
   {
     "level": 22,
-    "text": "climate change is accelerating",
+    "text": "puh, this is warm(ing)",
     "iceExtentData": 7.1,
     "year": 2001
   },
   {
     "level": 23,
-    "text": "climate change is accelerating",
+    "text": "puh, this is warm(ing)",
     "iceExtentData": 6.3,
     "year": 2002
   },
@@ -151,13 +151,13 @@
   },
   {
     "level": 26,
-    "text": "puh, this is warm(ing)",
+    "text": "climate change is accelerating",
     "iceExtentData": 5.8,
     "year": 2005
   },
   {
     "level": 27,
-    "text": "polar bears dislike",
+    "text": "and sea ice is retreating",
     "iceExtentData": 6.2,
     "year": 2006
   },
@@ -193,7 +193,7 @@
   },
   {
     "level": 33,
-    "text": "lowest arctic sea ice on record",
+    "text": "arctic sea ice extent reaches an historic low",
     "iceExtentData": 4.1,
     "year": 2012
   },
@@ -235,7 +235,7 @@
   },
   {
     "level": 40,
-    "text": "polar bears are beyond stressed",
+    "text": "game is getting harder",
     "iceExtentData": 4.8,
     "year": 2019
   },
@@ -253,7 +253,7 @@
   },
   {
     "level": 43,
-    "text": "war in eastern Europe, bears still unhappy",
+    "text": "back to normal - but what is normal?",
     "iceExtentData": 5.4,
     "year": 2022
   }
