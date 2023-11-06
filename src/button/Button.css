@@ -8,6 +8,7 @@
   border-top: 4px solid var(--text-color);
   border-bottom: 4px solid var(--text-color);
   position: relative;
+  pointer-events: all;
 }
 
 .button::before {

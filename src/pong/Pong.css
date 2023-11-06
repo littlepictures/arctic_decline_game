@@ -6,6 +6,7 @@
 canvas {
   position: relative;
   z-index: 10;
+  user-select: none;
 }
 
 .levels-wrapper {
@@ -16,6 +17,8 @@ canvas {
   left: 50%;
   z-index: 1;
   overflow: hidden;
+  pointer-events: none;
+  user-select: none;
 }
 
 .levels {
